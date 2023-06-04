@@ -8,6 +8,6 @@ namespace NasaAPIConsumer.Services
 {
     public interface INasaAPIService
     {
-        Task<List<INasaAPIService>> Get(int days);
+        Task Get(int days);
     }
 }
