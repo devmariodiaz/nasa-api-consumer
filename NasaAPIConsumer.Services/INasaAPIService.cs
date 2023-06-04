@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NasaAPIConsumer.Domain;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,6 @@ namespace NasaAPIConsumer.Services
 {
     public interface INasaAPIService
     {
-        Task Get(int days);
+        Task<List<Asteroid>> Get(int days);
     }
 }

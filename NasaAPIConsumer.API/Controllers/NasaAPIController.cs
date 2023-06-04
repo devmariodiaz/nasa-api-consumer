@@ -15,12 +15,12 @@ namespace NasaAPIConsumer.API.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetData(int id)
+        public async Task<IActionResult> GetData(int days)
         {
             try
             {
-                await _nasaAPIService.Get(1);
-                return Ok();
+                var response = await _nasaAPIService.Get(days);
+                return Ok(response);
             }
             catch (Exception ex)
             {

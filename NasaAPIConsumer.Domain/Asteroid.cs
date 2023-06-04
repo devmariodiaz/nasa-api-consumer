@@ -10,8 +10,8 @@ namespace NasaAPIConsumer.Domain
     {
         public string Name { get; set; }
         public float Diameter { get; set; }
-        public float Velocity { get; set; }
-        public DateTime Date { get; set; }
+        public string Velocity { get; set; }
+        public string Date { get; set; }
         public string Planet { get; set; }
     }
 }
