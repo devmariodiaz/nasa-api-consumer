@@ -15,16 +15,20 @@ namespace NasaAPIConsumer.API.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetData(int days)
+        [Route("/asteroids")]
+        public async Task<IActionResult> GetData([FromQuery]int days)
         {
             try
             {
+                if (days == null)
+                    return BadRequest("days parameter should be provided");
+
                 var response = await _nasaAPIService.Get(days);
                 return Ok(response);
             }
             catch (Exception ex)
             {
-                return StatusCode(500, "");
+                return StatusCode(500, ex.Message);
             }
         }
     }

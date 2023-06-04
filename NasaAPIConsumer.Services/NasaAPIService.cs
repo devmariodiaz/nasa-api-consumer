@@ -78,6 +78,8 @@ namespace NasaAPIConsumer.Services
 
             }
 
+            list = list.OrderByDescending(o => o.Diameter).Take(3).ToList();
+
             return list;
         }
     }
