@@ -15,7 +15,7 @@ namespace NasaAPIConsumer.Utils
         {
             IConfiguration configuration = ServiceTool.ServiceProvider.GetService<IConfiguration>();
             var configs = configuration?.GetSection("NasaAPIConfigurations")
-                                         .Get<NasaAPIConfigurations>();
+                                        .Get<NasaAPIConfigurations>();
 
             if (configs == null)
                 throw new Exception("NasaAPIConfigurations cannot be null");
