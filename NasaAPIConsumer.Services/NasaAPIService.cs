@@ -46,30 +46,30 @@ namespace NasaAPIConsumer.Services
                     {
                         for (int i = 0; i < prop.GetArrayLength(); i++)
                         {
-                            var kilometers = prop[i].GetProperty("estimated_diameter").GetProperty("kilometers");
-                            var close_approach_data = prop[i].GetProperty("close_approach_data");
-
-                            var name = prop[i].GetProperty("name").ToString();
-                            var estimated_diameter_min = kilometers.GetProperty("estimated_diameter_min").ToString();
-                            var estimated_diameter_max = kilometers.GetProperty("estimated_diameter_max").ToString();
-                            var kilometers_per_hour = close_approach_data[0].GetProperty("relative_velocity").GetProperty("kilometers_per_hour").ToString();
-                            var close_approach_date = close_approach_data[0].GetProperty("close_approach_date").ToString();
-                            var orbiting_body = close_approach_data[0].GetProperty("orbiting_body").ToString();
-                            var diameterAvg = (float.Parse(estimated_diameter_min) + float.Parse(estimated_diameter_max)) / 2;
-
-                            list.Add(new()
+                            var is_potentially_hazardous_asteroid = bool.Parse(prop[i].GetProperty("is_potentially_hazardous_asteroid").ToString().ToLower());
+                            var name1 = prop[i].GetProperty("name").ToString();
+                            if (is_potentially_hazardous_asteroid)
                             {
-                                Name = name,
-                                Diameter = diameterAvg,
-                                Date = close_approach_date,
-                                Planet = orbiting_body,
-                                Velocity = kilometers_per_hour
-                            });
+                                var kilometers = prop[i].GetProperty("estimated_diameter").GetProperty("kilometers");
+                                var close_approach_data = prop[i].GetProperty("close_approach_data");
 
-                            //if (bool.Parse(prop[i].GetProperty("is_potentially_hazardous_asteroid").ToString().ToLower()))
-                            //{
+                                var name = prop[i].GetProperty("name").ToString();
+                                var estimated_diameter_min = kilometers.GetProperty("estimated_diameter_min").ToString();
+                                var estimated_diameter_max = kilometers.GetProperty("estimated_diameter_max").ToString();
+                                var kilometers_per_hour = close_approach_data[0].GetProperty("relative_velocity").GetProperty("kilometers_per_hour").ToString();
+                                var close_approach_date = close_approach_data[0].GetProperty("close_approach_date").ToString();
+                                var orbiting_body = close_approach_data[0].GetProperty("orbiting_body").ToString();
+                                var diameterAvg = (float.Parse(estimated_diameter_min) + float.Parse(estimated_diameter_max)) / 2;
 
-                            //}
+                                list.Add(new()
+                                {
+                                    Name = name,
+                                    Diameter = diameterAvg,
+                                    Date = close_approach_date,
+                                    Planet = orbiting_body,
+                                    Velocity = kilometers_per_hour
+                                });
+                            }
                         }
                     }                    
 
