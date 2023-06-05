@@ -46,9 +46,8 @@ namespace NasaAPIConsumer.Services
                     {
                         for (int i = 0; i < prop.GetArrayLength(); i++)
                         {
-                            var is_potentially_hazardous_asteroid = bool.Parse(prop[i].GetProperty("is_potentially_hazardous_asteroid").ToString().ToLower());
-                            var name1 = prop[i].GetProperty("name").ToString();
-                            if (is_potentially_hazardous_asteroid)
+                            
+                            if (bool.Parse(prop[i].GetProperty("is_potentially_hazardous_asteroid").ToString().ToLower()))
                             {
                                 var kilometers = prop[i].GetProperty("estimated_diameter").GetProperty("kilometers");
                                 var close_approach_data = prop[i].GetProperty("close_approach_data");
