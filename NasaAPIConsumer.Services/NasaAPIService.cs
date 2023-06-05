@@ -3,23 +3,21 @@ using NasaAPIConsumer.Domain;
 using NasaAPIConsumer.Utils;
 using Microsoft.Extensions.Configuration;
 using System.Text.Json;
-using System.Text.Json.Serialization;
-using System.Collections.Generic;
 
 namespace NasaAPIConsumer.Services
 {
     public class NasaAPIService : INasaAPIService
     {
         private readonly HttpClient _httpClient;
-        private readonly IConfiguration _configuration;
+        IHttpService _httpService;
         private readonly NasaAPIConfigurations _configs;
-        public NasaAPIService(HttpClient httpClient)
+        public NasaAPIService(IHttpService httpService, 
+                              NasaAPIConfigurationsLoader configurationsLoader, 
+                              IDefaultHttpClientFactory httpClientFactory)
         {
-            _configuration = ServiceTool.ServiceProvider.GetService<IConfiguration>();
-            _configs = _configuration.GetSection("NasaAPIConfigurations")
-                                     .Get<NasaAPIConfigurations>()
-                                     ?? throw new Exception("This property can't be null");
-            _httpClient = httpClient;
+            _httpService = httpService;
+            _configs = configurationsLoader.LoadConfigurations();
+            _httpClient = httpClientFactory.CreateHttpClient();
         }
         public async Task<List<Asteroid>> Get(int days)
         {
@@ -30,7 +28,7 @@ namespace NasaAPIConsumer.Services
 
             string url = $"{_configs.BaseUrl}?start_date={currentDate.ToString("yyyy-MM-dd")}&end_date={endDate.ToString("yyyy-MM-dd")}&API_KEY={_configs.ApiKey}";
 
-            HttpResponseMessage response = await _httpClient.GetAsync(url);
+            HttpResponseMessage response = await _httpService.GetAsync(url);
 
             if(response.IsSuccessStatusCode)
             {
@@ -77,9 +75,7 @@ namespace NasaAPIConsumer.Services
 
             }
 
-            list = list.OrderByDescending(o => o.Diameter).Take(3).ToList();
-
-            return list;
+            return list.OrderByDescending(o => o.Diameter).Take(3).ToList();
         }
     }
 }

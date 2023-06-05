@@ -10,6 +10,9 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddHttpClient();
+builder.Services.AddTransient<IHttpService, HttpService>();
+builder.Services.AddTransient<NasaAPIConfigurationsLoader>();
+builder.Services.AddTransient<IDefaultHttpClientFactory, DefaultHttpClientFactory>();
 builder.Services.AddTransient<INasaAPIService, NasaAPIService>();
 
 var app = builder.Build();

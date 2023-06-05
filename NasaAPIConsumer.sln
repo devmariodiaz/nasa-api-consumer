@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NasaAPIConsumer.Domain", "N
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NasaAPIConsumer.Utils", "NasaAPIConsumer.Utils\NasaAPIConsumer.Utils.csproj", "{B323F33D-32CF-433F-A795-DDD9E346116A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NasaAPIConsumer.Services.Test", "NasaAPIConsumer.Services.Test\NasaAPIConsumer.Services.Test.csproj", "{4F455328-3262-47AD-986A-A7BDBEAB937F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{B323F33D-32CF-433F-A795-DDD9E346116A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B323F33D-32CF-433F-A795-DDD9E346116A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B323F33D-32CF-433F-A795-DDD9E346116A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4F455328-3262-47AD-986A-A7BDBEAB937F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4F455328-3262-47AD-986A-A7BDBEAB937F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4F455328-3262-47AD-986A-A7BDBEAB937F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4F455328-3262-47AD-986A-A7BDBEAB937F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

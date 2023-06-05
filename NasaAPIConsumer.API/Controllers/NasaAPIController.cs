@@ -22,7 +22,7 @@ namespace NasaAPIConsumer.API.Controllers
             {
                 if (days == null)
                     return BadRequest("days parameter should be provided");
-                if (days > 0 && days <= 7)
+                if (days < 1 && days > 7)
                     return BadRequest("days parameter should be between 1 and 7");
 
                 var response = await _nasaAPIService.Get(days);
